@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+.bg-container {
+  background-color: #ffc2a0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-container {
+  width: 60%;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.heading {
+  font-size: 28px;
+  color: #ff8542;
+}

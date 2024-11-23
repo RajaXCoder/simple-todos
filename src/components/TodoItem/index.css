@@ -1,0 +1,15 @@
+.todo-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.del-btn {
+  background-color: transparent;
+  width: 100px;
+  height: 40px;
+  border: 1px solid #ff0b37;
+  border-radius: 12px;
+  color: #ff0b37;
+  cursor: pointer;
+}
