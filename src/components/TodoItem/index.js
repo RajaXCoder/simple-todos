@@ -1,26 +1,57 @@
-import {Component} from 'react'
+import {useState} from 'react'
 import './index.css'
 
-class TodoItem extends Component {
-  deleteTodo = () => {
-    const {todo, deleteItem} = this.props
-    const {id} = todo
-    deleteItem(id)
+const TodoItem = props => {
+  const [isEdit, setIsEdit] = useState(false)
+  const [editInput, setEditInput] = useState('')
+  const [isStrike, setIsStrike] = useState(false)
+
+  const {todo, deleteItem, saveTodo} = props
+  const {id, title} = todo
+
+  const toggleEditMode = () => {
+    setIsEdit(true)
+    setEditInput(title)
   }
 
-  render() {
-    const {todo} = this.props
-    const {title} = todo
-    console.log(todo)
-    return (
-      <li className="todo-container">
-        <p className="todo">{title}</p>
-        <button type="button" onClick={this.deleteTodo} className="del-btn">
-          Delete
-        </button>
-      </li>
-    )
+  const handleSave = () => {
+    if (editInput.trim() !== '') {
+      saveTodo(id, editInput)
+      setIsEdit(false)
+    }
   }
+
+  const toggleStrike = () => {
+    setIsStrike(prev => !prev)
+  }
+
+  return (
+    <li className="todo-container">
+      <input type="checkbox" onChange={toggleStrike} />
+      {isEdit ? (
+        <input
+          type="text"
+          value={editInput}
+          onChange={e => setEditInput(e.target.value)}
+          className="todo-edit-input"
+        />
+      ) : (
+        <p className={`todo ${isStrike ? 'strike-through' : ''}`}>{title}</p>
+      )}
+      {!isEdit ? (
+        <button type="button" onClick={toggleEditMode}>
+          Edit
+        </button>
+      ) : (
+        <button type="button" onClick={handleSave}>
+          Save
+        </button>
+      )}
+      <button type="button" onClick={() => deleteItem(id)}>
+        Delete
+      </button>
+    </li>
+  )
 }
 
 export default TodoItem

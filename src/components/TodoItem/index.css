@@ -1,15 +1,59 @@
 .todo-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 10px;
+}
+
+.checkbox-input {
+  width: 15px;
+  height: 15px;
+  border-radius: 8px;
+  align-self: center;
+}
+
+input[type='checkbox']:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.todo-container p {
+  flex: 1;
+  text-align: left;
+}
+
+.strike-p {
+  text-decoration: line-through;
+}
+
+.todo-edit-input {
+  flex: 1;
+  border: 1 sold #000;
+  border-radius: 6px;
+  padding: 10px;
+  outline: none;
+  margin-right: 10px;
 }
 
 .del-btn {
   background-color: transparent;
-  width: 100px;
+  width: 80px;
   height: 40px;
   border: 1px solid #ff0b37;
   border-radius: 12px;
   color: #ff0b37;
   cursor: pointer;
+}
+
+.edit-btn {
+  background-color: transparent;
+  justify-items: flex-end;
+  width: 80px;
+  padding: 10px;
+  height: 40px;
+  margin-right: 10px;
+  outline: none;
+  border: 1px solid green;
+  border-radius: 10px;
+  color: green;
 }
