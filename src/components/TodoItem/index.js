@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {useState} from 'react'
 import './index.css'
 
@@ -52,6 +53,74 @@ const TodoItem = props => {
       </button>
     </li>
   )
+=======
+import {Component} from 'react'
+import './index.css'
+
+class TodoItem extends Component {
+  state = {isEdit: false, editInput: ''}
+
+  componentDidMount() {
+    const {todo} = this.props
+    const {title} = todo
+    this.setState({editInput: title})
+  }
+
+  deleteTodo = () => {
+    const {todo, deleteItem} = this.props
+    const {id} = todo
+    deleteItem(id)
+  }
+
+  changeInput = e => {
+    this.setState({editInput: e.target.value})
+  }
+
+  saveTodo = async () => {
+    const {editInput} = this.state
+    const {saveTodoItem, todo} = this.props
+    const {id} = todo
+    await this.setState(() => ({isEdit: false}))
+    saveTodoItem(id, editInput)
+  }
+
+  render() {
+    const {isEdit, editInput} = this.state
+    const {todo} = this.props
+    const {title} = todo
+    // console.log(todo)
+    return (
+      <li className="todo-container">
+        {isEdit ? (
+          <input
+            type="text"
+            className="edit-input"
+            onChange={this.changeInput}
+            value={editInput}
+          />
+        ) : (
+          <p className="todo">{title}</p>
+        )}
+        {isEdit ? (
+          <button className="edit-btn" type="button" onClick={this.saveTodo}>
+            Save
+          </button>
+        ) : (
+          <button
+            className="edit-btn"
+            type="button"
+            onClick={() => this.setState({isEdit: true})}
+          >
+            Edit
+          </button>
+        )}
+        <button type="button" onClick={this.deleteTodo} className="del-btn">
+          Delete
+        </button>
+      </li>
+    )
+  }
+>>>>>>> upadted
 }
 
 export default TodoItem
